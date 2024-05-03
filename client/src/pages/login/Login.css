@@ -1,0 +1,39 @@
+.login-section{
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    padding: 5rem;
+}
+
+.login-form{
+    background-color: white;
+}
+
+.login-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* border: 1px solid black; */
+    width: fit-content;
+    align-items: center;
+    background-color: white;
+}
+
+.login-form{
+    padding: 1rem;
+}
+
+p{
+    /* border: 1px solid red; */
+    font-weight: 600;
+}
+
+.linking {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color:  rgba(14, 51, 107, 0.991);
+}
+
+.login-form .form-input{
+    width: 20rem;
+}

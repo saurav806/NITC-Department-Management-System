@@ -1,0 +1,26 @@
+.nav-container{
+    background-color: rgba(51, 101, 175, 0.991);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.nav-container img{
+    width:25vw;
+}
+
+.nav-items ul{
+    display: flex;
+}
+
+.nav-items li{
+    list-style: none;
+    margin-left: 3vw;
+}
+
+.nav-items a{
+    text-decoration: none;
+    color: white;
+}

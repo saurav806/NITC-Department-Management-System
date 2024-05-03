@@ -1,0 +1,50 @@
+body{
+    background-color: #CCCEDE;
+}
+
+.home-container {
+    text-align: center;
+    margin-top: 80px;
+    
+}
+
+.heading{
+    /* border: 1px solid black; */
+    margin: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.heading h3{
+    margin: 30px;
+    font-size: 6vh;
+}
+
+.sub-head{
+    /* border: 1px solid black; */
+}
+
+.sub-head h1{
+    margin: 30px;
+    font-size: 15vh;
+    font-weight: 100;
+    font-family: 'Arial Narrow';
+}
+
+.list-button{
+    padding-top: 20px;
+}
+
+.list-button .btn{
+    width: 90vh;
+    background-color: #6DC466;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 5px 5px 10px 0px #170A4D;
+}
+
+.list-button .btn p{
+    font-size: 8vh;
+    padding: 0px;
+    margin: 10px;
+}
+
