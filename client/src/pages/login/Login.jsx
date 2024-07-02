@@ -109,7 +109,7 @@ function Login() {
                     onClick={togglePasswordVisibility} // Added onClick event to toggle visibility
                     className="password-toggle"
                   >
-                    {showPassword ? "🙈" : "👁️"} {/* Ternary operator to switch icon */}
+                   {/* {showPassword ? "🙈" : "👁️"} Ternary operator to switch icon */}
                   </span>
                 </div>
                 <p>New to DMS? <NavLink to="/register" className="linking">Sign Up</NavLink></p>
