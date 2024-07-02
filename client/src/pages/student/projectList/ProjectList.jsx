@@ -15,12 +15,12 @@ const ProjectList = () => {
         method: "GET",
         headers:{
           Authorization: authorizationToken,
+          "Content-type":"application/json"
         },
       });
-
       const data = await response.json();
-      console.log(`users ${data.title}`);
-      setProjects(data);
+      console.log('User data fetched:', data);
+      setProjects(data.projectList);
     } catch (error) {
       res.status(400).json({ message: " error fetching project"});
     }
@@ -51,10 +51,10 @@ const ProjectList = () => {
           <tbody>
           {projects.map((curProject, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <td>{curProject.title}</td>
                   <td>{curProject.type}</td>
-                  <td>{curProject.mentor}</td>
+                  <td>{curProject.mentor.firstname}</td>
                   <td>{curProject.skill}</td>
                   <td>{curProject.description}</td>
                   <td>Data 6</td>

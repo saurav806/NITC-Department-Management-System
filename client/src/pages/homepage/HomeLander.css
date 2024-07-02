@@ -1,0 +1,31 @@
+.home-body{
+    padding: 10% 0 15% 0;
+    background: url('.\back2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-title{
+    height: 100%;
+}
+
+.home-title h1{
+    color: white;
+    font-size: 4rem;
+    font-weight: 400;
+}
+
+.home-title span{
+    color: rgb(47, 117, 191);
+    font-weight: 600;
+}
+
+.home-title h3{
+    color: rgba(167, 206, 235, 0.921);
+    text-align: center;
+    margin-top: -10%;
+}

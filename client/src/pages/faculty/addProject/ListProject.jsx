@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../../../store/auth';
 import { toast } from 'react-toastify'; 
 
-const URL = "http://localhost:5000/api/auth/projects";
+const URL = "http://localhost:5000/api/list-project";
 
 function ListProject() {
   const [project, setProject] = useState({
@@ -12,7 +12,7 @@ function ListProject() {
     type:"",
   })
 
-  const {user} = useAuth();
+  const {user,authorizationToken} = useAuth();
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -32,12 +32,14 @@ function ListProject() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: authorizationToken,
         },
         body: JSON.stringify(project),
       });
 
       
-      const res_data = await response.json();
+      // const res_data = await response.json();
+      console.log(response);
 
       if (response.ok) {
         // storeTokenInLs(res_data.token);
@@ -46,7 +48,8 @@ function ListProject() {
         // navigate("/");
       }
       else{
-        toast.error( res_data.extraDetails ? res_data.extraDetails : res_data.message);
+        // toast.error( res_data.extraDetails ? res_data.extraDetails : res_data.message);
+        console.log("response");
       }
     } catch (error) {
       console.log("Project Listing", error);
@@ -130,11 +133,11 @@ function ListProject() {
                       required
                       autoComplete="off"
                       value={user.firstname}
-                      readOnly
+                      disabled
                     />
                   </div>
                   <button type="submit" className="register-btn btn-submit">
-                    Register Now
+                    Publish Now
                   </button>
                 </form>
               </div>

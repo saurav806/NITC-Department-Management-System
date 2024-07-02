@@ -10,12 +10,16 @@ const URL = "http://localhost:5000/api/auth/register";
 
 function Register() {
   const [user, setUser] = useState({
+    rollno: "",
     firstname: "",
     lastname: "",
+    batch: "",
+    course:"",
+    department: "",
     email: "",
     phone: "",
     password: "",
-    cnfPassword: "jdshfkjhds",
+    cnfPassword: "",
   });
 
   const navigate = useNavigate();
@@ -36,25 +40,35 @@ function Register() {
     console.log(user);
 
     try {
-      const response = await fetch(URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
 
-      // console.log(response);
-      const res_data = await response.json();
-
-      if (response.ok) {
-        storeTokenInLs(res_data.token);
-        // setUser()
-        toast.success("Registration Successful");
-        navigate("/");
+      if(user.cnfPassword != user.password){
+        toast.error("password not same");
+        user.cnfPassword = "",
+        user.password = ""
+        
       }
       else{
-        toast.error( res_data.extraDetails ? res_data.extraDetails : res_data.message);
+
+        const response = await fetch(URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        });
+
+        // console.log(response);
+        const res_data = await response.json();
+
+        if (response.ok) {
+          storeTokenInLs(res_data.token);
+          // setUser()
+          toast.success("Registration Successful");
+          navigate("/");
+        }
+        else{
+          toast.error( res_data.extraDetails ? res_data.extraDetails : res_data.message);
+        }
       }
     } catch (error) {
       console.log("Register", error);
@@ -89,6 +103,21 @@ function Register() {
                     />
                   </div>
                   
+                  <div className="form-data">
+                    {/* <label htmlFor="email">Email</label> */}
+                    <input
+                      className="form-input"
+                      type="text"
+                      name="rollno"
+                      placeholder="Your your rollno"
+                      id="rollno"
+                      required
+                      autoComplete="off"
+                      value={user.rollno}
+                      onChange={handleInput}
+                    />
+                  </div>
+                  
 
                   <div className="name-section">
                     <div className="form-data">
@@ -105,6 +134,7 @@ function Register() {
                         onChange={handleInput}
                         />
                     </div>
+
                     <div className="form-data">
                       {/* <label htmlFor="lastname">Last Name</label> */}
                       <input
@@ -120,6 +150,8 @@ function Register() {
                         />
                     </div>
                   </div>
+
+
                   <div className="form-data">
                     {/* <label htmlFor="phone">Phone</label> */}
                     <input
@@ -134,6 +166,52 @@ function Register() {
                       onChange={handleInput}
                     />
                   </div>
+                  
+                  <div className="form-data">
+                    {/* <label htmlFor="phone">Phone</label> */}
+                    <input
+                      className="form-input"
+                      type="string"
+                      name="batch"
+                      placeholder="Your batch"
+                      id="batch"
+                      required
+                      autoComplete="off"
+                      value={user.batch}
+                      onChange={handleInput}
+                    />
+                  </div>
+
+                  <div className="form-data">
+                    {/* <label htmlFor="phone">Phone</label> */}
+                    <input
+                      className="form-input"
+                      type="string"
+                      name="course"
+                      placeholder="Your course"
+                      id="course"
+                      required
+                      autoComplete="off"
+                      value={user.course}
+                      onChange={handleInput}
+                    />
+                  </div>
+
+                  <div className="form-data">
+                    {/* <label htmlFor="phone">Phone</label> */}
+                    <input
+                      className="form-input"
+                      type="string"
+                      name="department"
+                      placeholder="Your department"
+                      id="department"
+                      required
+                      autoComplete="off"
+                      value={user.department}
+                      onChange={handleInput}
+                    />
+                  </div>
+
                   <div className="form-data">
                     {/* <label htmlFor="password">Password</label> */}
                     <input

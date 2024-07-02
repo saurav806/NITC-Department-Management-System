@@ -24,3 +24,9 @@
     text-decoration: none;
     color: white;
 }
+
+.flash-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+  }

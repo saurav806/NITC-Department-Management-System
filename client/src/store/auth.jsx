@@ -8,7 +8,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState({});
 
   const authorizationToken = `Bearer ${token}`;
 
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
 
   const LogoutUser = () => {
     setToken("");
-    setUser("");
+    setUser({});
     toast.success("Logout successful");
     return localStorage.removeItem("token");
   };
@@ -32,6 +32,7 @@ export const AuthProvider = ({ children }) => {
 
   const userAuthentication = async () => {
     try {
+      console.log("Starting user authentication");
       const response = await fetch("http://localhost:5000/api/auth/user", {
         method: "GET",
         headers: {
@@ -50,7 +51,9 @@ export const AuthProvider = ({ children }) => {
   };
   
   useEffect( () => {
-    userAuthentication()
+    console.log("token changed or on mount, token:", token);
+    if(token)
+    userAuthentication();
   }, [token]);
 
   return (

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { Schema } = require('mongoose');
 
 // Define the schema for the project
 const projectSchema = new mongoose.Schema({
@@ -28,8 +29,8 @@ const projectSchema = new mongoose.Schema({
     default: 'Inactive'
   },
   mentor: {
-    type: String,
-    required: true,
+    type: Schema.ObjectId,
+    ref: "User"
   },
 });
 

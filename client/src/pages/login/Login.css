@@ -1,15 +1,15 @@
-.login-section{
+.login-section {
     /* border: 1px solid black; */
     display: flex;
     justify-content: center;
     padding: 5rem;
-}
-
-.login-form{
+  }
+  
+  .login-form {
     background-color: white;
-}
-
-.login-container{
+  }
+  
+  .login-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -17,23 +17,37 @@
     width: fit-content;
     align-items: center;
     background-color: white;
-}
-
-.login-form{
+  }
+  
+  .login-form {
     padding: 1rem;
-}
-
-p{
+  }
+  
+  p {
     /* border: 1px solid red; */
     font-weight: 600;
-}
-
-.linking {
+  }
+  
+  .linking {
     text-decoration: none;
     font-size: 1.2rem;
-    color:  rgba(14, 51, 107, 0.991);
-}
-
-.login-form .form-input{
+    color: rgba(14, 51, 107, 0.991);
+  }
+  
+  .login-form .form-input {
     width: 20rem;
-}
+  }
+  
+  .password-container {
+    position: relative; /* Added relative positioning to the container */
+    width: 20rem;
+  }
+  
+  .password-toggle {
+    position: absolute; /* Added absolute positioning to the eye icon */
+    right: 10px; /* Adjusted distance from the right */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Correct vertical alignment */
+    cursor: pointer;
+  }
+  

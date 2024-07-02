@@ -7,7 +7,7 @@ const router = express.Router();
 
 router
   .route("/list-project")
-  .post( projectControllers.projects);
+  .post(authMiddleware, projectControllers.projects);
 
 router.route('/projects').get(authMiddleware, projectControllers.getAllProjects);
 
