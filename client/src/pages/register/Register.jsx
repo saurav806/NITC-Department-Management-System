@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Register.css";
 import { useAuth } from "../../store/auth";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import Regimg from "./register.jpg";
 import { NavLink } from "react-router-dom";
 
 const URL = "http://localhost:5000/api/auth/register";
+const departmentListURL = "http://localhost:5000/api/departments"
 
 function Register() {
   const [user, setUser] = useState({
@@ -14,7 +15,7 @@ function Register() {
     firstname: "",
     lastname: "",
     batch: "",
-    course:"",
+    course: "",
     department: "",
     email: "",
     phone: "",
@@ -22,8 +23,24 @@ function Register() {
     cnfPassword: "",
   });
 
+  const [departments, setDepartments] = useState([]);
+
   const navigate = useNavigate();
   const { storeTokenInLs } = useAuth();
+
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      try {
+        const response = await fetch(departmentListURL);
+        const data = await response.json();
+        setDepartments(data);
+      } catch (error) {
+        console.log("Error fetching departments:", error);
+      }
+    };
+
+    fetchDepartments();
+  }, []);
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -40,15 +57,14 @@ function Register() {
     console.log(user);
 
     try {
-
-      if(user.cnfPassword != user.password){
-        toast.error("password not same");
-        user.cnfPassword = "",
-        user.password = ""
-        
-      }
-      else{
-
+      if (user.cnfPassword !== user.password) {
+        toast.error("Passwords do not match");
+        setUser({
+          ...user,
+          password: "",
+          cnfPassword: "",
+        });
+      } else {
         const response = await fetch(URL, {
           method: "POST",
           headers: {
@@ -57,17 +73,14 @@ function Register() {
           body: JSON.stringify(user),
         });
 
-        // console.log(response);
         const res_data = await response.json();
 
         if (response.ok) {
           storeTokenInLs(res_data.token);
-          // setUser()
           toast.success("Registration Successful");
           navigate("/");
-        }
-        else{
-          toast.error( res_data.extraDetails ? res_data.extraDetails : res_data.message);
+        } else {
+          toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
         }
       }
     } catch (error) {
@@ -82,17 +95,14 @@ function Register() {
           <div className="section-registration">
             <div className="register-container">
               <div className="registration-image">
-                <img src={Regimg} alt="" width="220px" height="400px"/>
+                <img src={Regimg} alt="" width="220px" height="400px" />
               </div>
               <div className="registration-form">
                 <h1 className="heading">Register</h1>
 
                 <form onSubmit={handleSubmit} className="form-page">
-
-
-                <div className="name-section">
+                  <div className="name-section">
                     <div className="form-data">
-                      {/* <label htmlFor="firstname">First Name</label> */}
                       <input
                         className="form-input"
                         type="text"
@@ -103,91 +113,90 @@ function Register() {
                         autoComplete="off"
                         value={user.firstname}
                         onChange={handleInput}
-                        />
+                      />
                     </div>
 
                     <div className="form-data">
-                      {/* <label htmlFor="lastname">Last Name</label> */}
                       <input
                         className="form-input"
                         type="text"
                         name="lastname"
                         placeholder="Last name"
                         id="lastname"
-                        // required
                         autoComplete="off"
                         value={user.lastname}
                         onChange={handleInput}
-                        />
+                      />
                     </div>
                   </div>
 
-                <div className="name-section">
-                  <div className="form-data">
-                    {/* <label htmlFor="phone">Phone</label> */}
-                    <input
-                      className="form-input"
-                      type="string"
-                      name="course"
-                      placeholder="Your course"
-                      id="course"
-                      required
-                      autoComplete="off"
-                      value={user.course}
-                      onChange={handleInput}
-                    />
-                  </div>
-                  
-                  <div className="form-data">
-                    {/* <label htmlFor="email">Email</label> */}
-                    <input
-                      className="form-input"
-                      type="text"
-                      name="rollno"
-                      placeholder="Roll no"
-                      id="rollno"
-                      required
-                      autoComplete="off"
-                      value={user.rollno}
-                      onChange={handleInput}
-                    />
-                  </div>
-                </div>
+                  <div className="name-section">
+                    <div className="form-data">
+                      <input
+                        className="form-input"
+                        type="text"
+                        name="course"
+                        placeholder="Course"
+                        id="course"
+                        required
+                        autoComplete="off"
+                        value={user.course}
+                        onChange={handleInput}
+                      />
+                    </div>
 
-                <div className="name-section">
-                  <div className="form-data">
-                    {/* <label htmlFor="phone">Phone</label> */}
-                    <input
-                      className="form-input"
-                      type="string"
-                      name="department"
-                      placeholder="Your department"
-                      id="department"
-                      required
-                      autoComplete="off"
-                      value={user.department}
-                      onChange={handleInput}
-                    />
+                    <div className="form-data">
+                      <input
+                        className="form-input"
+                        type="text"
+                        name="rollno"
+                        placeholder="Roll no"
+                        id="rollno"
+                        required
+                        autoComplete="off"
+                        value={user.rollno}
+                        onChange={handleInput}
+                      />
+                    </div>
                   </div>
 
-                  <div className="form-data">
-                    {/* <label htmlFor="phone">Phone</label> */}
-                    <input
-                      className="form-input"
-                      type="string"
-                      name="batch"
-                      placeholder="Your batch"
-                      id="batch"
-                      required
-                      autoComplete="off"
-                      value={user.batch}
-                      onChange={handleInput}
-                    />
+                  <div className="name-section">
+                    <div className="form-data">
+                      <select
+                        className="drop-input"
+                        name="department"
+                        id="department"
+                        required
+                        value={user.department}
+                        onChange={handleInput}
+                      >
+                        <option value="department">
+                          Select your department
+                        </option>
+                        {departments.map((department) => (
+                          <option key={department.id} value={department.name}>
+                            {department.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="form-data">
+                      <input
+                        className="form-input"
+                        type="text"
+                        name="batch"
+                        placeholder="Admission year"
+                        id="batch"
+                        required
+                        autoComplete="off"
+                        value={user.batch}
+                        onChange={handleInput}
+                      />
+                    </div>
                   </div>
-                </div>
 
                   <div className="form-data">
-                    {/* <label htmlFor="email">Email</label> */}
                     <input
                       className="form-input"
                       type="text"
@@ -202,7 +211,6 @@ function Register() {
                   </div>
 
                   <div className="form-data">
-                    {/* <label htmlFor="phone">Phone</label> */}
                     <input
                       className="form-input"
                       type="number"
@@ -217,7 +225,6 @@ function Register() {
                   </div>
 
                   <div className="form-data">
-                    {/* <label htmlFor="password">Password</label> */}
                     <input
                       className="form-input"
                       type="password"
@@ -231,7 +238,6 @@ function Register() {
                     />
                   </div>
                   <div className="form-data">
-                    {/* <label htmlFor="password">Password</label> */}
                     <input
                       className="form-input"
                       type="password"
@@ -244,7 +250,12 @@ function Register() {
                       onChange={handleInput}
                     />
                   </div>
-                  <p>Already registered ? <NavLink to="/login" className="linking">Login</NavLink></p>
+                  <p>
+                    Already registered?{" "}
+                    <NavLink to="/login" className="linking">
+                      Login
+                    </NavLink>
+                  </p>
                   <button type="submit" className="register-btn btn-submit">
                     Register Now
                   </button>
