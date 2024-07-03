@@ -8,6 +8,8 @@ import { NavLink } from "react-router-dom";
 
 const URL = "http://localhost:5000/api/auth/register";
 const departmentListURL = "http://localhost:5000/api/departments"
+const courseListURL = "http://localhost:5000/api/courses"
+
 
 function Register() {
   const [user, setUser] = useState({
@@ -24,6 +26,8 @@ function Register() {
   });
 
   const [departments, setDepartments] = useState([]);
+  const [courses, setCourses] = useState([]);
+
 
   const navigate = useNavigate();
   const { storeTokenInLs } = useAuth();
@@ -132,17 +136,23 @@ function Register() {
 
                   <div className="name-section">
                     <div className="form-data">
-                      <input
-                        className="form-input"
-                        type="text"
+                      <select
+                        className="drop-input"
                         name="course"
-                        placeholder="Course"
                         id="course"
                         required
-                        autoComplete="off"
                         value={user.course}
                         onChange={handleInput}
-                      />
+                      >
+                        <option value="course">
+                          Select your course
+                        </option>
+                        {courses.map((course) => (
+                          <option key={course.id} value={course.name}>
+                            {course.name}
+                          </option>
+                        ))}
+                      </select>
                     </div>
 
                     <div className="form-data">
