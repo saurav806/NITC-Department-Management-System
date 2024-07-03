@@ -7,6 +7,7 @@ const router = require("./router/auth-router");
 const facultyRouter = require("./router/faculty-router");
 const projectRoute = require("./router/project-router");
 const adminRoute = require("./router/admin-router");
+const departmentRoute = require("./router/department-router");
 const connectDB = require("./utils/db");
 
 const errorMiddleware = require('./middlewares/error-middleware');
@@ -30,6 +31,10 @@ app.use("/api/auth",facultyRouter);
 
 // Defining projects routes here
 app.use("/api", projectRoute);
+
+// Defining departments routes here
+app.use("/api", departmentRoute);
+
 
 
 // Defining Admin route
