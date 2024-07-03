@@ -88,38 +88,9 @@ function Register() {
                 <h1 className="heading">Register</h1>
 
                 <form onSubmit={handleSubmit} className="form-page">
-                  <div className="form-data">
-                    {/* <label htmlFor="email">Email</label> */}
-                    <input
-                      className="form-input"
-                      type="text"
-                      name="email"
-                      placeholder="Your email address"
-                      id="email"
-                      required
-                      autoComplete="off"
-                      value={user.email}
-                      onChange={handleInput}
-                    />
-                  </div>
-                  
-                  <div className="form-data">
-                    {/* <label htmlFor="email">Email</label> */}
-                    <input
-                      className="form-input"
-                      type="text"
-                      name="rollno"
-                      placeholder="Your your rollno"
-                      id="rollno"
-                      required
-                      autoComplete="off"
-                      value={user.rollno}
-                      onChange={handleInput}
-                    />
-                  </div>
-                  
 
-                  <div className="name-section">
+
+                <div className="name-section">
                     <div className="form-data">
                       {/* <label htmlFor="firstname">First Name</label> */}
                       <input
@@ -151,37 +122,7 @@ function Register() {
                     </div>
                   </div>
 
-
-                  <div className="form-data">
-                    {/* <label htmlFor="phone">Phone</label> */}
-                    <input
-                      className="form-input"
-                      type="number"
-                      name="phone"
-                      placeholder="Your phone number"
-                      id="phone"
-                      required
-                      autoComplete="off"
-                      value={user.phone}
-                      onChange={handleInput}
-                    />
-                  </div>
-                  
-                  <div className="form-data">
-                    {/* <label htmlFor="phone">Phone</label> */}
-                    <input
-                      className="form-input"
-                      type="string"
-                      name="batch"
-                      placeholder="Your batch"
-                      id="batch"
-                      required
-                      autoComplete="off"
-                      value={user.batch}
-                      onChange={handleInput}
-                    />
-                  </div>
-
+                <div className="name-section">
                   <div className="form-data">
                     {/* <label htmlFor="phone">Phone</label> */}
                     <input
@@ -196,7 +137,24 @@ function Register() {
                       onChange={handleInput}
                     />
                   </div>
+                  
+                  <div className="form-data">
+                    {/* <label htmlFor="email">Email</label> */}
+                    <input
+                      className="form-input"
+                      type="text"
+                      name="rollno"
+                      placeholder="Roll no"
+                      id="rollno"
+                      required
+                      autoComplete="off"
+                      value={user.rollno}
+                      onChange={handleInput}
+                    />
+                  </div>
+                </div>
 
+                <div className="name-section">
                   <div className="form-data">
                     {/* <label htmlFor="phone">Phone</label> */}
                     <input
@@ -213,12 +171,58 @@ function Register() {
                   </div>
 
                   <div className="form-data">
+                    {/* <label htmlFor="phone">Phone</label> */}
+                    <input
+                      className="form-input"
+                      type="string"
+                      name="batch"
+                      placeholder="Your batch"
+                      id="batch"
+                      required
+                      autoComplete="off"
+                      value={user.batch}
+                      onChange={handleInput}
+                    />
+                  </div>
+                </div>
+
+                  <div className="form-data">
+                    {/* <label htmlFor="email">Email</label> */}
+                    <input
+                      className="form-input"
+                      type="text"
+                      name="email"
+                      placeholder="Email"
+                      id="email"
+                      required
+                      autoComplete="off"
+                      value={user.email}
+                      onChange={handleInput}
+                    />
+                  </div>
+
+                  <div className="form-data">
+                    {/* <label htmlFor="phone">Phone</label> */}
+                    <input
+                      className="form-input"
+                      type="number"
+                      name="phone"
+                      placeholder="Mobile number"
+                      id="phone"
+                      required
+                      autoComplete="off"
+                      value={user.phone}
+                      onChange={handleInput}
+                    />
+                  </div>
+
+                  <div className="form-data">
                     {/* <label htmlFor="password">Password</label> */}
                     <input
                       className="form-input"
                       type="password"
                       name="password"
-                      placeholder="Your password"
+                      placeholder="Set password"
                       id="password"
                       required
                       autoComplete="off"
@@ -232,7 +236,7 @@ function Register() {
                       className="form-input"
                       type="password"
                       name="cnfPassword"
-                      placeholder="Confirm your password"
+                      placeholder="Confirm password"
                       id="cnfPassword"
                       required
                       autoComplete="off"

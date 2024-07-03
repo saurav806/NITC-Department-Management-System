@@ -6,7 +6,7 @@ const loginSchema = z.object({
     .trim()
     .email({ message: "Invalid email address" })
     .min(3, { message: "Email must be at least of 3 characters" })
-    .max(255, { message: "Email must not be more than 255 characters" }),
+    .max(255, { message: "Email must not be more than 255 characters" })
     .refine(value => value.endsWith('@nitc.ac.in'), {
         message: "Email must be from the nitc.ac.in domain"
       }),
