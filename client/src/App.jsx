@@ -25,6 +25,7 @@ import ManageProject from "./pages/admin/manageProject/ManageProject";
 import AdminPage from "./pages/admin/AdminPage";
 
 import { useAuth } from "./store/auth";
+import FacultyRegister from "./pages/facultyRegister/facultyregister";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeLander />} />
           <Route path="/register" element={<Register />} /> {/* Moved outside of isLoggedIn check */}
+          <Route path="/faculty-register" element={<FacultyRegister />} /> {/* Moved outside of isLoggedIn check */}
           <Route path="/login" element={<Login />} /> {/* Moved outside of isLoggedIn check */}
           
           {isLoggedIn ? (  // Use ternary operator to conditionally render routes
