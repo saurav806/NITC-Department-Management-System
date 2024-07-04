@@ -1,34 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import './ProjectList.css';
-// import Project from '../../../../../server/models/project-model';
-import axios from 'axios';
 import { useAuth } from '../../../store/auth';
 
 const ProjectList = () => {
-
   const [projects, setProjects] = useState([]);
-  const {authorizationToken} = useAuth();
+  const { authorizationToken } = useAuth();
 
-  const getAllProjects = async() => {
+  const getAllProjects = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/projects", {
         method: "GET",
-        headers:{
+        headers: {
           Authorization: authorizationToken,
-          "Content-type":"application/json"
+          "Content-type": "application/json"
         },
       });
       const data = await response.json();
       console.log('User data fetched:', data);
       setProjects(data.projectList);
     } catch (error) {
-      res.status(400).json({ message: " error fetching project"});
+      console.error("Error fetching project", error);
     }
   }
 
-  useEffect( () => {
+  useEffect(() => {
     getAllProjects();
-  },[]);
+  }, []);
 
   return (
     <div>
@@ -37,7 +34,7 @@ const ProjectList = () => {
       </div>
       <div className="project-table-data">
         <table className='project-table'>
-          <thead >
+          <thead>
             <tr>
               <th className='title'>Title</th>
               <th className='type'>Type</th>
@@ -49,12 +46,12 @@ const ProjectList = () => {
             </tr>
           </thead>
           <tbody>
-          {projects.map((curProject, index) => {
+            {projects.map((curProject, index) => {
               return (
                 <tr key={index}>
                   <td>{curProject.title}</td>
                   <td>{curProject.type}</td>
-                  <td>{curProject.mentor.firstname}</td>
+                  <td>{curProject.mentor ? curProject.mentor : "No mentor assigned"}</td> {/* Added null check */}
                   <td>{curProject.skill}</td>
                   <td>{curProject.description}</td>
                   <td>Data 6</td>
@@ -66,7 +63,6 @@ const ProjectList = () => {
                 </tr>
               );
             })}
-            
           </tbody>
         </table>
       </div>
@@ -74,4 +70,4 @@ const ProjectList = () => {
   )
 }
 
-export default ProjectList
+export default ProjectList;

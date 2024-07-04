@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 
 const URL = "http://localhost:5000/api/auth/register";
 const departmentListURL = "http://localhost:5000/api/departments"
-const courseListURL = "http://localhost:5000/api/courses"
+const programListURL = "http://localhost:5000/api/programs"
 
 
 function Register() {
@@ -26,7 +26,7 @@ function Register() {
   });
 
   const [departments, setDepartments] = useState([]);
-  const [courses, setCourses] = useState([]);
+  const [programs, setPrograms] = useState([]);
 
 
   const navigate = useNavigate();
@@ -42,8 +42,18 @@ function Register() {
         console.log("Error fetching departments:", error);
       }
     };
-
     fetchDepartments();
+
+    const fetchPrograms = async () => {
+      try {
+        const response = await fetch(programListURL);
+        const data = await response.json();
+        setPrograms(data);
+      } catch (error) {
+        console.log("Error fetching program / degree:", error);
+      }
+    };
+    fetchPrograms();
   }, []);
 
   const handleInput = (e) => {
@@ -147,9 +157,9 @@ function Register() {
                         <option value="course">
                           Select your course
                         </option>
-                        {courses.map((course) => (
-                          <option key={course.id} value={course.name}>
-                            {course.name}
+                        {programs.map((program) => (
+                          <option key={program.id} value={program.name}>
+                            {program.name}
                           </option>
                         ))}
                       </select>

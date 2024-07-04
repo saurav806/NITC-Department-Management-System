@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
-const { Schema } = require('mongoose');
 
-// Define the schema for the project
 const projectSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -13,11 +11,11 @@ const projectSchema = new mongoose.Schema({
   },
   skill: {
     type: String,
-    required:true
+    required: true
   },
   type: {
     type: String,
-    required:true
+    required: true
   },
   listDate: {
     type: Date,
@@ -29,14 +27,11 @@ const projectSchema = new mongoose.Schema({
     default: 'Inactive'
   },
   mentor: {
-    type: Schema.ObjectId,
-    ref: "User"
-  },
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Faculty"
+  }
 });
 
-
-
-// Create the Project model using the schema
-const Project = new mongoose.model('Project', projectSchema);
+const Project = mongoose.model('Project', projectSchema);
 
 module.exports = Project;

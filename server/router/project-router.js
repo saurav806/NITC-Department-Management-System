@@ -9,7 +9,7 @@ router
   .route("/list-project")
   .post(authMiddleware, projectControllers.projects);
 
-router.route('/projects').get(authMiddleware, projectControllers.getAllProjects);
+router.route('/projects').get(projectControllers.getAllProjects);
 
 
 module.exports = router;

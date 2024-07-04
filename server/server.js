@@ -8,6 +8,8 @@ const facultyRouter = require("./router/faculty-router");
 const projectRoute = require("./router/project-router");
 const adminRoute = require("./router/admin-router");
 const departmentRoute = require("./router/department-router");
+const programRoute = require("./router/program-router");
+
 const connectDB = require("./utils/db");
 
 const errorMiddleware = require('./middlewares/error-middleware');
@@ -34,6 +36,9 @@ app.use("/api", projectRoute);
 
 // Defining departments routes here
 app.use("/api", departmentRoute);
+
+// Defining programs/degree routes here
+app.use("/api", programRoute);
 
 
 

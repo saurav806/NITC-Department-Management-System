@@ -1,10 +1,10 @@
 const express = require("express");
-const getAllDepartments = require("../controllers/department-controller");
+const getAllPrograms = require("../controllers/program-controller");
 const authMiddleware = require("../middlewares/auth-middleware");
 
 const router = express.Router();
 
-router.route('/departments').get(getAllDepartments);
+router.route('/programs').get(getAllPrograms);
 
 
 module.exports = router;
