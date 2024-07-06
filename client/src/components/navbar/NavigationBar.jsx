@@ -151,7 +151,7 @@ function NavigationBar() {
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
                 <li className="lists">
-                  <NavLink to="/projects">Project</NavLink>
+                  <NavLink to="/projects">List Project</NavLink>
                 </li>
                 <li className="lists">
                   <NavLink to="/students-request">Request</NavLink>

@@ -8,7 +8,6 @@ import { NavLink } from "react-router-dom";
 
 const URL = "http://localhost:5000/api/auth/faculty-register";
 const departmentListURL = "http://localhost:5000/api/departments"
-// const courseListURL = "http://localhost:5000/api/courses"
 
 
 function FacultyRegister() {
