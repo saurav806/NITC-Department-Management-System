@@ -39,6 +39,10 @@ const mtechStudentsSchema = new mongoose.Schema({
         type:String,
         require:true,
     },
+    isAssigned:{ // project is assigned
+        type:Boolean,
+        default: false,
+    },
     isAdmin:{
         type:Boolean,
         default: false,

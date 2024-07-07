@@ -21,7 +21,11 @@ const StudentRequest = () => {
       const data = await response.json();
       console.log('User data fetched:', data);
 
+      console.log("Student id in request",data.projectList.studentID);
+
       const request = data.projectList.filter(project => project.appliedStatus === "Applied");
+
+      console.log("applied project", request);
 
       setProjects(request || [] );
     } catch (error) {
@@ -38,15 +42,6 @@ const StudentRequest = () => {
       <div className="heading">
         <h1>Students Request</h1>
       </div>
-          {/* <thead >
-            <tr>
-              <th>Project Title</th>
-              <th>Student Name</th>
-              <th className='preference'>Preference</th>
-              <th className='action'>Action</th>
-            </tr>
-          </thead>
-           */}
 
       {projects.length > 0 ? (
       <div className="project-table-data">

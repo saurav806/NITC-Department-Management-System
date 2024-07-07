@@ -37,7 +37,7 @@ const register = async(req, res) => {
 
         let userCreated;
         
-        if(course === "btech"){
+        if(course === "Btech"){
             userCreated = await Btech.create({
                 rollno,
                 firstname,
@@ -51,7 +51,7 @@ const register = async(req, res) => {
             });
 
         }
-        else if( course === "mtech"){
+        else if( course === "Mtech"){
             userCreated = await Mtech.create({
                 rollno,
                 firstname,
@@ -64,7 +64,7 @@ const register = async(req, res) => {
                 password,
             });
         }
-        else if( course === "phd"){
+        else if( course === "Phd"){
             userCreated = await Phd.create({
                 rollno,
                 firstname,

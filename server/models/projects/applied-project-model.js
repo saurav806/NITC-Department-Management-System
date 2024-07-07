@@ -35,7 +35,13 @@ const appliedProjectSchema = new mongoose.Schema({
   },
   studentID: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Btech" || "Mtech" || "Phd"
+    required: true, // Assuming studentID is required
+    refPath: 'studentModel'
+  },
+  studentModel: {
+    type: String,
+    required: true,
+    enum: ['Btech', 'Mtech', 'Phd']
   }
 });
 

@@ -165,6 +165,7 @@ const appliedProjects = async (req, res) => {
             preference,
             mentorID,
             studentID: student._id,
+            studentModel: student.course
         });
 
         console.log(appliedProjectCreated);
