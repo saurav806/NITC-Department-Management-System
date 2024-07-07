@@ -31,7 +31,7 @@ const [projects, setProjects] = useState([]);
   return (
     <div>
       <div className="heading">
-        <h1>Project List</h1>
+        <h1>Applied Project</h1>
       </div>
       {projects.length > 0 ? (
       <div className="project-table-data">
