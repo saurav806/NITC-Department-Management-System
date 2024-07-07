@@ -27,6 +27,7 @@ import AdminPage from "./pages/admin/AdminPage";
 import { useAuth } from "./store/auth";
 import FacultyRegister from "./pages/facultyRegister/facultyregister";
 import StudentDashboard from "./pages/student/dashboard/studentDashboard";
+import Profile from "./components/profile/profile";
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
               <Route path="/students-request" element={<StudentRequest />} />
               <Route path="/projects-list" element={<ProjectList />} />
               <Route path="/student-dashboard" element={<StudentDashboard />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/logout" element={<Logout />} />
 
               {/* Admin routes */}

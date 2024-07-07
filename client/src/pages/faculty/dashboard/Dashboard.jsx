@@ -3,13 +3,14 @@ import ListProject from '../addProject/ListProject';
 import StudentRequest from '../studentRequest/StudentRequest';
 import './Dashboard.css';
 import Sidebar from '../../../components/sidebar/sidebar';
+import Profile from '../../../components/profile/profile';
 
 const Dashboard = () => {
   const options = [
     { name: 'List A Project', component: ListProject },
     { name: 'Student Request', component: StudentRequest },
     { name: 'Your Project(s)', component: () => <div>Your Project(s) Content</div> },
-    { name: 'Profile', component: () => <div>Profile Content</div> }
+    { name: 'Profile', component: Profile }
   ];
 
   return (
