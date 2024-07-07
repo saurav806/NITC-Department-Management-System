@@ -1,0 +1,146 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .dashboard {
+    display: flex;
+    height: 100vh; /* Ensure the dashboard spans the full viewport height */
+  }
+  
+  .sidebar {
+    width: 200px;
+    background-color: #e4e4fa;
+    padding: 20px;
+    padding-left: 0px;
+    height: 100vh; /* Make the sidebar span the full viewport height */
+    position: sticky;
+    top: 0;
+    transition: transform 0.2s ease; /* Add transition for smooth sliding */
+  }
+  
+  .sidebar.hidden {
+    transform: translateX(-185px); /* Hide the sidebar but leave 15px visible */
+  }
+  
+  .sidebar-option {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: orange;
+    cursor: pointer;
+    border-top-right-radius: 15px;
+    transition: background-color 0s;
+  }
+  
+  .sidebar-option.active {
+    background-color: green;
+    color: white;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #fff;
+    overflow-y: auto; /* Ensure main content can scroll if necessary */
+  }
+  
+  .toggle-btn {
+    position: absolute;
+    top: 50%;
+    height: 40px;
+    width: 15px;
+    right: 0; /* Position next to the sidebar */
+    transform: translateY(-50%);
+    z-index: 1000;
+    cursor: pointer;
+    background-color: #80d7ff;
+    padding: 5px;
+    border-radius: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .toggle-btn.hidden {
+    display: none;
+  }
+  
+  .show-btn {
+    position: absolute;
+    top: 50%;
+    height: 40px;
+    width: 15px;
+    left: 9px; /* Position to the left of the hidden sidebar */
+    transform: translateY(-50%);
+    z-index: 1000;
+    cursor: pointer;
+    background-color: #80d7ff;
+    padding: 5px;
+    border-radius: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+  }
+  
+  .sidebar.hidden + .show-btn {
+    visibility: visible;
+  }
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+/* html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .dashboard {
+    display: flex;
+    height: 100vh; /* Ensure the dashboard spans the full viewport height */
+  /* } */
+  
+  /* .sidebar {
+    width: 200px;
+    background-color: #e4e4fa;
+    padding: 20px;
+    padding-left: 0px;
+    height: 100vh; /* Make the sidebar span the full viewport height */
+    /* position: sticky;
+    top: 0; */
+  /* }  */
+  
+  /* .sidebar-option {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: orange;
+    cursor: pointer;
+    border-top-right-radius: 15px;
+    transition: background-color 0s;
+  }
+   */
+  /* .sidebar-option.active {
+    background-color: green;
+    color: white;
+  } */
+  
+  /* .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #fff;
+    overflow-y: auto; /* Ensure main content can scroll if necessary */
+  /* }  */
+  

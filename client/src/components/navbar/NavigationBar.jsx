@@ -150,23 +150,23 @@ function NavigationBar() {
                 <li className="lists">
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
-                <li className="lists">
+                {/* <li className="lists">
                   <NavLink to="/projects">List Project</NavLink>
                 </li>
                 <li className="lists">
                   <NavLink to="/students-request">Request</NavLink>
-                </li>
+                </li> */}
               </>
             )}
 
             {isLoggedIn && !faculty && !admin && (
               <>
                 <li className="lists">
-                  <NavLink to="/dashboard">Dashboard</NavLink>
+                  <NavLink to="/student-dashboard">Dashboard</NavLink>
                 </li>
-                <li className="lists">
+                {/* <li className="lists">
                   <NavLink to="/projects-list">Project List</NavLink>
-                </li>
+                </li> */}
               </>
             )}
 
