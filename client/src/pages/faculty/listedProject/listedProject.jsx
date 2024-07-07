@@ -23,6 +23,11 @@ const ListedProject = () => {
       }
 
       const data = await response.json();
+
+      
+      const mentorIds = data.projects.map(project => project.mentor);
+      console.log("mentorIds", mentorIds)
+
       setProjects(data.projects || []);
     } catch (error) {
       console.error("Error fetching projects", error);
@@ -45,10 +50,10 @@ const ListedProject = () => {
             <tr>
               <th className='title'>Title</th>
               <th className='type'>Type</th>
-              <th className='mentor'>Mentor</th>
+              {/* <th className='mentor'>Mentor</th> */}
               <th className='skill'>Skill</th>
               <th className='description'>Description</th>
-              <th className='details'>More Details</th>
+              <th className='status'>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -57,10 +62,10 @@ const ListedProject = () => {
                 <tr key={index}>
                   <td>{curProject.title}</td>
                   <td>{curProject.type}</td>
-                  <td>{curProject.mentor ? curProject.mentor : "No mentor assigned"}</td>
+                  {/* <td>{curProject.mentorName ? curProject.mentorName : "No mentor assigned"}</td> */}
                   <td>{curProject.skill}</td>
                   <td>{curProject.description}</td>
-                  <td>Data 6</td>
+                  <td>{curProject.status}</td>
                 </tr>
               ))
             ) : (

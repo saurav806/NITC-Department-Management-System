@@ -40,6 +40,8 @@ const [projects, setProjects] = useState([]);
             <tr>
               <th className='title'>Title</th>
               <th className='mentor'>Mentor</th>
+              <th className='mentor'>Mentor Email</th>
+              <th className='mentor'>Skills</th>
               <th className='details'>Applied on</th>
               <th className='description'>Status</th>
             </tr>
@@ -49,8 +51,10 @@ const [projects, setProjects] = useState([]);
               return (
                 <tr key={index}>
                   <td>{curProject.title}</td>
-                  <td>{curProject.mentorID}</td>
-                  <td>{curProject.applyDate}</td>
+                  <td>{curProject.mentorName}</td>
+                  <td>{curProject.mentorEmail}</td>
+                  <td>{curProject.projectSkill}</td>
+                  <td>{curProject.applyDate.split('T')[0]}</td>
                   <td>{curProject.appliedStatus}</td>
                 </tr>
               );

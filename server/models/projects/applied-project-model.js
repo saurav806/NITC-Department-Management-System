@@ -7,7 +7,8 @@ const appliedProjectSchema = new mongoose.Schema({
   },
   projectID:{
     type: mongoose.Schema.Types.ObjectId,
-    required: true
+    required: true,
+    ref: "Project"
   },
   applyDate: {
     type: Date,
@@ -30,6 +31,7 @@ const appliedProjectSchema = new mongoose.Schema({
   mentorID: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
+    ref: "Faculty"
   },
   studentID: {
     type: mongoose.Schema.Types.ObjectId,

@@ -28,6 +28,7 @@ const ProjectList = () => {
       }
 
       const data = await response.json();
+
       setProjects(data.projects || []);
     } catch (error) {
       console.error("Error fetching projects", error);
@@ -115,7 +116,7 @@ const ProjectList = () => {
                 <tr key={index}>
                   <td>{curProject.title}</td>
                   <td>{curProject.type}</td>
-                  <td>{curProject.mentor ? curProject.mentor : "No mentor assigned"}</td>
+                  <td>{curProject.mentorName ? curProject.mentorName : "No mentor assigned"}</td>
                   <td>{curProject.skill}</td>
                   <td>{curProject.description}</td>
                   <td>Data 6</td>

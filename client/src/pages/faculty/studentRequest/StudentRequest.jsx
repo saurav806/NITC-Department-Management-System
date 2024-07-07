@@ -20,7 +20,10 @@ const StudentRequest = () => {
       });
       const data = await response.json();
       console.log('User data fetched:', data);
-      setProjects(data.projectList || [] );
+
+      const request = data.projectList.filter(project => project.appliedStatus === "Applied");
+
+      setProjects(request || [] );
     } catch (error) {
       console.error("Error fetching project", error);
     }
@@ -52,7 +55,9 @@ const StudentRequest = () => {
             <tr>
               <th className='title'>Title</th>
               <th className='mentor'>Student Name</th>
+              <th className='mentor'>Student Email</th>
               <th className='details'>Preference</th>
+              <th className='details'>Status</th>
               <th className='description'>Action</th>
             </tr>
           </thead>
@@ -61,9 +66,18 @@ const StudentRequest = () => {
               return (
                 <tr key={index}>
                   <td>{curProject.title}</td>
-                  <td>{curProject.mentorID}</td>
-                  <td>{curProject.applyDate}</td>
+                  <td>{curProject.studentName}</td>
+                  <td>{curProject.studentEmail}</td>
+                  <td>{curProject.preference}</td>
                   <td>{curProject.appliedStatus}</td>
+                  <td>
+                    <button className="btn-action btn-accept">
+                      Accept 
+                    </button>
+                    <button className="btn-action btn-reject">
+                      Reject
+                    </button>
+                  </td>
                 </tr>
               );
             })}
