@@ -25,7 +25,7 @@ const appliedProjectSchema = new mongoose.Schema({
   },
   appliedStatus: {
     type: String,
-    enum: ['Applied', 'Pending', 'Assigned'],
+    enum: ['Applied', 'Rejected', 'Assigned'],
     default: 'Applied'
   },
   mentorID: {

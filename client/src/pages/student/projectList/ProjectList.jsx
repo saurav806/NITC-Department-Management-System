@@ -8,11 +8,18 @@ const ProjectList = () => {
   const [projects, setProjects] = useState([]);
   const { user, authorizationToken } = useAuth();
   const [displayMessage, setDisplayMessage] = useState();
+  const [countProjects, setCountProjects] = useState([]);
 
   // State for managing the popup visibility and selected project
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [preference, setPreference] = useState("");
+
+  useEffect(() => {
+    getAllProjects();
+    // Fetch applied projects for the current user
+    fetchAppliedProjects();
+  }, []);
 
   const getAllProjects = async () => {
     try {
@@ -34,9 +41,8 @@ const ProjectList = () => {
       if (user.isAssigned) {
         setDisplayMessage("You have already assigned a project");
         setProjects([]);
-        return
-      }
-      else{
+        return;
+      } else {
         setDisplayMessage("No Projects Available");
       }
 
@@ -51,12 +57,32 @@ const ProjectList = () => {
     }
   };
 
-  useEffect(() => {
-    getAllProjects();
-  }, []);
+
+  const fetchAppliedProjects = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/view-applied-project", {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch applied projects");
+      }
+
+      const data = await response.json();
+      setCountProjects(data.projectList || []);
+    } catch (error) {
+      console.error("Error fetching applied projects", error);
+      setCountProjects([]);
+    }
+  };
 
   // Handler for opening the popup
   const handleApplyClick = (project) => {
+    fetchAppliedProjects();
     setSelectedProject(project);
     setIsPopupOpen(true);
   };
@@ -76,6 +102,15 @@ const ProjectList = () => {
   // Function to apply to a project with the input preference
   const applyToProject = async () => {
     if (!selectedProject) return;
+
+    // Check if user has already applied to 4 projects
+    if (countProjects.length >= 3) {
+      toast.error("You have already applied to 4 projects.");
+      handleClosePopup();
+      return;
+    }
+
+    console.log("Count of applied projects",projects);
 
     const applyData = {
       title: selectedProject.title,
@@ -103,7 +138,8 @@ const ProjectList = () => {
 
       const data = await response.json();
       toast.success("Application successful:", data);
-
+      getAllProjects();
+      fetchAppliedProjects(); // Refresh applied projects list
       handleClosePopup();
     } catch (error) {
       toast.error("Error applying for project", error.message);

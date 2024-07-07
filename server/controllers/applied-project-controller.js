@@ -1,4 +1,5 @@
 const AppliedProject = require("../models/projects/applied-project-model");
+const Project = require("../models/project-model");
 
 const getAllAppliedProjects = async (req, res, next) => {
     const User = req.user;
@@ -29,7 +30,7 @@ const getAllAppliedProjects = async (req, res, next) => {
                 },
                 {
                     path: "studentID",
-                    select: "firstname email phone"
+                    select: "firstname email phone status"
                 },
             ]);
         }
@@ -45,6 +46,7 @@ const getAllAppliedProjects = async (req, res, next) => {
             if (projectObject.projectID) {
                 projectObject.projectType = projectObject.projectID.type;
                 projectObject.projectSkill = projectObject.projectID.skill;
+                projectObject.proStatus = projectObject.projectID.status;
                 projectObject.projectID = projectObject.projectID._id;
             }
             if (projectObject.mentorID) {
@@ -92,4 +94,72 @@ const appliedProjects = async (req, res) => {
     }
 };
 
-module.exports = { getAllAppliedProjects, appliedProjects };
+const updateAppliedProject = async (req, res) => {
+    const { projectId, status } = req.body;
+  
+    try {
+      const project = await AppliedProject.findById(projectId);
+  
+      if (!project) {
+        return res.status(404).json({ message: 'Project not found' });
+      }
+  
+      // Update the status of the current project
+      project.appliedStatus = status;
+    //   project.projectStatus = "Active";
+      await project.save();
+  
+      // Delete all other requests with the same projectID
+      await AppliedProject.deleteMany({
+        projectID: project.projectID,
+        _id: { $ne: projectId }
+      });
+  
+      // Delete all other requests by the same user
+      await AppliedProject.deleteMany({
+        studentID: project.studentID,
+        _id: { $ne: projectId }
+      });
+  
+      res.status(200).json({ message: 'Project accepted and other requests deleted successfully' });
+    } catch (error) {
+      console.error('Error updating project status:', error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
+  
+
+const updateListedProject = async (req, res) => {
+    const { projectId, status } = req.body;
+    console.log("from controller for update projectID2", projectId);
+  
+    try {
+      const project = await Project.findById(projectId);
+  
+      if (!project) {
+        return res.status(404).json({ message: 'Project not found' });
+      }
+  
+      project.status = status;
+      await project.save();
+  
+      res.status(200).json({ message: 'Project status updated successfully' });
+    } catch (error) {
+      console.error('Error updating project status:', error);
+      res.status(500).json({ message: 'Server error' });
+    }
+};
+
+// New function to reject other requests
+const rejectOtherRequests = async (req, res) => {
+    const { projectID } = req.params;
+    try {
+        await AppliedProject.updateMany({ projectID: projectID, appliedStatus: 'Applied' }, { appliedStatus: 'Rejected' });
+        res.status(200).json({ message: 'Other requests rejected successfully' });
+    } catch (error) {
+        console.error('Error rejecting other requests:', error);
+        res.status(500).json({ message: 'Failed to reject other requests', error });
+    }
+};
+
+module.exports = { getAllAppliedProjects, appliedProjects, updateAppliedProject, updateListedProject, rejectOtherRequests };
