@@ -5,6 +5,7 @@ import './Dashboard.css';
 import Sidebar from '../../../components/sidebar/sidebar';
 import Profile from '../../../components/profile/profile';
 import { useAuth } from '../../../store/auth';
+import ListedProject from '../listedProject/listedProject';
 const Dashboard = () => {
 
   const {user} = useAuth();
@@ -12,7 +13,7 @@ const Dashboard = () => {
   const options = [
     { name: 'List A Project', component: ListProject },
     { name: 'Student Request', component: StudentRequest },
-    { name: 'Your Project(s)', component: () => <div>Your Project(s) Content</div> },
+    { name: 'Your Project(s)', component: ListedProject },
     { name: 'Profile', component: Profile }
   ];
 
