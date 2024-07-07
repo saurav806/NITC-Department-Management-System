@@ -1,18 +1,11 @@
-/* body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f9;
-  margin: 0;
-  padding: 0px;
-} */
+
 
 .profile-container {
-  /* max-width: 1000px; */
-  width: 100%;
   margin: 20px auto;
   padding: 20px;
   border-radius: 15px;
   background: linear-gradient(90deg, #c4e2fa, #ccfafa);
-  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+  box-shadow: 20px 20px 10px #d9d9d9, -20px -20px 60px #ffffff;
 }
 
 .profile-header {

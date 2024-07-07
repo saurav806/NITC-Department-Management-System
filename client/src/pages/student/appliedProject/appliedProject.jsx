@@ -52,11 +52,6 @@ const [projects, setProjects] = useState([]);
                   <td>{curProject.mentorID}</td>
                   <td>{curProject.applyDate}</td>
                   <td>{curProject.appliedStatus}</td>
-                  {/* <td>
-                    <button className='btn-accept btn-action'>
-                      Apply
-                    </button>
-                  </td> */}
                 </tr>
               );
             })}
