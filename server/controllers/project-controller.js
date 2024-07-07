@@ -6,22 +6,40 @@ const getAllProjects = async (req, res, next) => {
     console.log("UserID", userId);
     try {
         // Fetch all projects with mentor details populated
-        const projects = await Project.find().populate("mentor", "firstname");
+        // const projects = await Project.find().populate("mentor", "firstname");
+        const projects = await Project.find();
 
         // Convert projects to plain objects and map to include mentor's firstname
-        const projectList = projects.map(project => {
-            const projectObject = project.toObject();
-            projectObject.mentor = project.mentor.firstname;
-            return projectObject;
-        });
+        // const projectList = projects.map(project => {
+        //     const projectObject = project.toObject();
+        //     projectObject.mentor = project.mentor.firstname;
+        //     return projectObject;
+        // });
+
+        const projectList = projects.map(project => project.toObject());
+
+
+        console.log("isFaculty logged In", userId.isFaculty)
+
+        let appliedProjects;
+        let updatedProjects;
 
         // Fetch applied projects for the current user
-        const appliedProjects = await AppliedProject.find({ studentID: userId });
+        appliedProjects = await AppliedProject.find({ studentID: userId });
 
-        // Filter projects where the user has not applied
-        const updatedProjects = projectList.filter(project => {
-            return !appliedProjects.some(ap => ap.projectID.toString() === project._id.toString());
-        });
+        if(!userId.isFaculty){
+
+
+            // Filter projects where the user has not applied
+            updatedProjects = projectList.filter(project => {
+                return !appliedProjects.some(ap => ap.projectID.toString() === project._id.toString());
+            });
+
+        }else {
+            updatedProjects = projectList.filter(project => {
+                return appliedProjects.some(ap => ap.projectID.toString() === project._id.toString());
+            });
+        }
 
         console.log("Filtered Projects:");
         console.log(updatedProjects);

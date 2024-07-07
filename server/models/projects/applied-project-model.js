@@ -28,8 +28,8 @@ const appliedProjectSchema = new mongoose.Schema({
     default: 'Applied'
   },
   mentorID: {
-    type: String,
-    required: true
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
   },
   studentID: {
     type: mongoose.Schema.Types.ObjectId,

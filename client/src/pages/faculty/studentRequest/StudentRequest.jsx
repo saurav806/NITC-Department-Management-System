@@ -1,16 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './StudentRequest.css';
+import {useAuth}  from '../../../store/auth';
 
 
 const StudentRequest = () => {
+
+  
+  const [projects, setProjects] = useState([]);
+  const { authorizationToken } = useAuth();
+
+  const getAllAppliedProjects = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/view-applied-project", {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+          "Content-type": "application/json"
+        },
+      });
+      const data = await response.json();
+      console.log('User data fetched:', data);
+      setProjects(data.projectList || [] );
+    } catch (error) {
+      console.error("Error fetching project", error);
+    }
+  }
+
+  useEffect(() => {
+    getAllAppliedProjects();
+  }, []);
+
   return (
     <div>
       <div className="heading">
         <h1>Students Request</h1>
       </div>
-      <div className="table-data">
-        <table>
-          <thead >
+          {/* <thead >
             <tr>
               <th>Project Title</th>
               <th>Student Name</th>
@@ -18,62 +43,44 @@ const StudentRequest = () => {
               <th className='action'>Action</th>
             </tr>
           </thead>
+           */}
+
+      {projects.length > 0 ? (
+      <div className="project-table-data">
+        <table className='project-table'>
+          <thead>
+            <tr>
+              <th className='title'>Title</th>
+              <th className='mentor'>Student Name</th>
+              <th className='details'>Preference</th>
+              <th className='description'>Action</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr>
-              <td>Data 1</td>
-              <td>Data 2</td>
-              <td >Data 3</td>
-              <td className='action-btn'>
-                <button className='btn-accept btn-action'>
-                  Accept
-                </button>
-                <button className='btn-reject btn-action'>
-                  Reject
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Data 4</td>
-              <td>Data 5</td>
-              <td>Data 6</td>
-              <td className='action-btn'>
-                <button className='btn-accept btn-action'>
-                  Accept
-                </button>
-                <button className='btn-reject btn-action'>
-                  Reject
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Data 4</td>
-              <td>Data 5</td>
-              <td>Data 6</td>
-              <td className='action-btn'>
-                <button className='btn-accept btn-action'>
-                  Accept
-                </button>
-                <button className='btn-reject btn-action'>
-                  Reject
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Data 4</td>
-              <td>Data 5</td>
-              <td>Data 6</td>
-              <td className='action-btn'>
-                <button className='btn-accept btn-action'>
-                  Accept
-                </button>
-                <button className='btn-reject btn-action'>
-                  Reject
-                </button>
-              </td>
-            </tr>
+            {projects.map((curProject, index) => {
+              return (
+                <tr key={index}>
+                  <td>{curProject.title}</td>
+                  <td>{curProject.mentorID}</td>
+                  <td>{curProject.applyDate}</td>
+                  <td>{curProject.appliedStatus}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
+      ) : (
+        <tr>
+          <td colSpan="7">There is no any Request</td>
+        </tr>
+      )}
+
+
+
+
+
+
     </div>
   )
 }

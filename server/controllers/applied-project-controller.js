@@ -1,9 +1,22 @@
 const AppliedProject = require("../models/projects/applied-project-model");
 
 const getAllAppliedProjects = async (req, res, next) => {
-    const student = req.user;
+    const User = req.user;
     try {
-        const projects = await AppliedProject.find({ studentID: student._id }).populate("studentID");
+
+        const faculty = User.isFaculty;
+        console.log("logged In user is Faculty", faculty);
+
+        let projects;
+
+        if(!faculty){
+            projects = await AppliedProject.find({ studentID: User._id }).populate("studentID");
+        }else {
+            projects = await AppliedProject.find({ mentorID: User._id});
+        }
+
+
+
         const projectList = projects.map(project => project.toObject());
     
         if (!projectList || projectList.length === 0) {
