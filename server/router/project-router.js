@@ -1,7 +1,6 @@
 const express = require("express");
 const projectControllers = require("../controllers/project-controller");
 const authMiddleware = require("../middlewares/auth-middleware");
-const projectMiddleware = require("../middlewares/project-middleware");
 const appliedProjectControllers = require("../controllers/applied-project-controller");
 
 const router = express.Router();
@@ -20,5 +19,17 @@ router
   .route('/view-applied-project')
   .get(authMiddleware, appliedProjectControllers.getAllAppliedProjects);
 
+router 
+  .route('/update-applied-project')
+  .put(authMiddleware, appliedProjectControllers.updateAppliedProject);
+
+router 
+  .route('/update-listed-project')
+  .put(authMiddleware, appliedProjectControllers.updateListedProject);
+
+// New route for rejecting other requests
+router
+  .route('/reject-other-requests/:projectID')
+  .put(authMiddleware, appliedProjectControllers.rejectOtherRequests);
 
 module.exports = router;
