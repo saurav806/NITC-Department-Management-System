@@ -4,6 +4,8 @@ import Profile from '../../components/profile/profile';
 import Sidebar from '../../components/sidebar/sidebar';
 import { useAuth } from '../../store/auth';
 import ListedHall from '../../components/listedHall/listedHall';
+import BookingRequest from './booking/bookingRequest/bookingRequest';
+import BookingHistory from './booking/bookingHistroy/bookingHistory';
 const Dashboard = () => {
 
   const {user} = useAuth();
@@ -11,6 +13,8 @@ const Dashboard = () => {
   const options = [
     { name: 'Add New Hall', component: ListHall },
     { name: 'Listed Hall', component: ListedHall },
+    { name: 'Booking Request', component: BookingRequest },
+    { name: 'Booking History', component: BookingHistory },
     { name: 'Profile', component:  Profile}
   ];
 

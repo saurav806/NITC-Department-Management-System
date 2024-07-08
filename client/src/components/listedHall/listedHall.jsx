@@ -76,6 +76,7 @@ const ListedHall = () => {
                       <th className="facultyInCharge">Faculty Incharge</th>
                       <th className="capacity">Capacity</th>
                       <th className="facility">Facility</th>
+                      <th className="facility">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -83,9 +84,9 @@ const ListedHall = () => {
                       <tr key={index}>
                         <td>{hall.name}</td>
                         <td>{hall.location}</td>
-                        <td>{hall.staffIncharge}</td>
+                        <td>{hall.staffInchargeName}</td>
                         <td>{hall.staffInchargeEmail}</td>
-                        <td>{hall.facultyInCharge}</td>
+                        <td>Jay Prakash</td>
                         <td>{hall.capacity}</td>
                         <td>{hall.facility}</td>
                         <td>
