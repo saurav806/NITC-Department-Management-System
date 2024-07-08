@@ -10,10 +10,10 @@ const hallSchema = new mongoose.Schema({
         type:String,
         require:true,
     },
-    // facultyInchargeID:{//foreign key to faculty table 
-    //     type:String,
-    //     require:true,
-    // },
+    facultyInchargeID:{//foreign key to faculty table 
+        type:String,
+        require:true,
+    },
     staffInchargeName:{
         type:String,
         require:true,

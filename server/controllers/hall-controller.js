@@ -3,18 +3,20 @@ const Hall = require("../models/halls/hall-model");
 // Creating a new project
 const halls = async (req, res) => {
   try {
-    const {name, location, staffInchargeName, staffInchargeEmail, capacity, facility } = req.body;
+    const {name, location, facultyInchargeID, staffInchargeName, staffInchargeEmail, capacity, facility } = req.body;
     const mentor = req.user;
 
     const hallCreated = await Hall.create({
         name, 
-        location, 
+        location,
+        facultyInchargeID,
         staffInchargeName, 
         staffInchargeEmail, 
         capacity,
         facility
-        // mentor: mentor._id,
     });
+
+    console.log("created hall",hallCreated);
 
     return res.status(200).json({
       message: "Hall Listed Successfully",
