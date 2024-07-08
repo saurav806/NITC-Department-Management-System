@@ -1,14 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const authControllers = require("../controllers/auth-controller");
-// const authMiddleware = require("../middlewares/auth-middleware");
+const authMiddleware = require("../middlewares/auth-middleware");
 const {loginSchema,signupSchema, facultySignupSchema} = require("../validators/auth-validators");
+const getAllFaculties = require("../controllers/faculty-controller");
 const validate = require("../middlewares/validate-middleware");
 
 
 router
   .route("/faculty-register")
   .post( validate(facultySignupSchema), authControllers.facultyRegister);
+
+router
+  .route("/faculties")
+  .get(authMiddleware, getAllFaculties);
+
 
 // router
 //     .route("/faculty-login")
