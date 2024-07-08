@@ -12,9 +12,12 @@ const Dashboard = () => {
 
   const options = [
     { name: 'Add New Hall', component: ListHall },
-    { name: 'Listed Hall', component: ListedHall },
-    { name: 'Booking Request', component: BookingRequest },
-    { name: 'Booking History', component: BookingHistory },
+    { name: 'All Halls', component: ListedHall },
+    { name: 'All Booking Request', component: BookingRequest },
+    { name: 'All Booking History', component: BookingHistory },
+    // { name: 'My Booking Request', component: BookingHistory },
+    // { name: 'My Booking History', component: BookingHistory },
+
     { name: 'Profile', component:  Profile}
   ];
 

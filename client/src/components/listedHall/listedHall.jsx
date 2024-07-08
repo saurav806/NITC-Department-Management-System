@@ -4,6 +4,9 @@ import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../store/auth";
 
+
+const facultyListURL = "http://localhost:5000/api/auth/faculties";//n
+
 const ListedHall = () => {
   const [halls, setHalls] = useState([]);
   const { authorizationToken } = useAuth();
@@ -73,7 +76,7 @@ const ListedHall = () => {
                       <th className="location">Location</th>
                       <th className="staffInCharge">Staff Incharge</th>
                       <th className="staffInChargeEmail">Staff Incharge Email</th>
-                      {/* <th className="facultyInCharge">Faculty Incharge</th> */}
+                      <th className="facultyInCharge">Faculty Incharge</th>
                       <th className="capacity">Capacity</th>
                       <th className="facility">Facility</th>
                       <th className="facility">Action</th>
@@ -86,6 +89,7 @@ const ListedHall = () => {
                         <td>{hall.location}</td>
                         <td>{hall.staffInchargeName}</td>
                         <td>{hall.staffInchargeEmail}</td>
+                        <td>{hall.facultyInchargeID}</td>
                         {/* <td>Jay Prakash</td> */}
                         <td>{hall.capacity}</td>
                         <td>{hall.facility}</td>
@@ -94,7 +98,7 @@ const ListedHall = () => {
                             className="btn-accept btn-action"
                             onClick={handleApplyClick}
                           >
-                            Apply
+                            Request Booking
                           </button>
                         </td>
                       </tr>

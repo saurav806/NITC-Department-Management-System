@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../../store/auth';
 import { toast } from 'react-toastify';
+import "./ListHall.css";
 
 const URL = "http://localhost:5000/api/admin/halls";
 const facultyListURL = "http://localhost:5000/api/auth/faculties";
@@ -132,7 +133,7 @@ function ListHall() {
             <div className="form-data">
               <label htmlFor="facultyInchargeID">Faculty Incharge</label>
               <select
-                className="form-input"
+                className="drop-input_ListHall"
                 name="facultyInchargeID"
                 id="facultyInchargeID"
                 required
