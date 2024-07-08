@@ -1,48 +1,75 @@
-
-
-.table-data{
-    /* border: 1px solid red; */
+.loading {
     display: flex;
     justify-content: center;
-}
-
-
-table {
+    align-items: center;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #0d174d;
+  }
+  
+  .loading-indicator {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #0d174d;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .no-requests {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #0d174d;
+  }
+  
+  /* Existing CSS */
+  .table-data {
+    display: flex;
+    justify-content: center;
+  }
+  
+  table {
     margin: 50px;
     font-size: 1.2rem;
     width: 80%;
     border-collapse: collapse;
     color: #0d174d;
-}
-td {
-    /* border: 1px solid rgb(10, 120, 128); */
+  }
+  
+  td {
     padding: 12px;
     text-align: left;
     box-shadow: 6px 3px 5px 0px rgb(31, 22, 42);
-}
-th {
+  }
+  
+  th {
     background-color: #0d174d;
     padding: 12px;
     box-shadow: 6px 0px 5px 0px rgb(31, 22, 42);
     color: white;
     font-size: 1.3rem;
-}
-
-.preference{
+  }
+  
+  .preference {
     width: 100px;
-}
-
-.action{
+  }
+  
+  .action {
     width: 300px;
-}
-
-.action-btn{
+  }
+  
+  .action-btn {
     display: flex;
-    justify-content:space-evenly;
-    /* border: 1px solid red; */
-}
-
-.btn-action{
+    justify-content: space-evenly;
+  }
+  
+  .btn-action {
     border: none;
     box-shadow: 1px 2px 1px 0px rgb(31, 22, 42);
     border-radius: 50px;
@@ -51,13 +78,13 @@ th {
     height: 2.3rem;
     margin-left: 10px;
     cursor: pointer;
-}
-
-.btn-accept{
+  }
+  
+  .btn-accept {
     background-color: rgb(166, 246, 150);
-}
-
-.btn-reject{
+  }
+  
+  .btn-reject {
     background-color: rgb(246, 150, 152);
-}
-
+  }
+  

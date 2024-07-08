@@ -1,37 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import './StudentRequest.css';
-import {useAuth}  from '../../../store/auth';
-
+import { useAuth } from '../../../store/auth';
 
 const StudentRequest = () => {
-
-  
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { authorizationToken } = useAuth();
 
   const getAllAppliedProjects = async () => {
+    setLoading(true);
     try {
       const response = await fetch("http://localhost:5000/api/view-applied-project", {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
-          "Content-type": "application/json"
+          "Content-type": "application/json",
         },
       });
       const data = await response.json();
       console.log('User data fetched:', data);
 
-      console.log("Student id in request",data.projectList.studentID);
+      console.log("Student id in request", data.projectList.studentID);
 
       const request = data.projectList.filter(project => project.appliedStatus === "Applied");
 
       console.log("applied project", request);
 
-      setProjects(request || [] );
+      setProjects(request || []);
     } catch (error) {
       console.error("Error fetching project", error);
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     getAllAppliedProjects();
@@ -43,22 +44,26 @@ const StudentRequest = () => {
         <h1>Students Request</h1>
       </div>
 
-      {projects.length > 0 ? (
-      <div className="project-table-data">
-        <table className='project-table'>
-          <thead>
-            <tr>
-              <th className='title'>Title</th>
-              <th className='mentor'>Student Name</th>
-              <th className='mentor'>Student Email</th>
-              <th className='details'>Preference</th>
-              <th className='details'>Status</th>
-              <th className='description'>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {projects.map((curProject, index) => {
-              return (
+      {loading ? (
+        <div className="loading">
+          <div className="loading-indicator"></div>
+          {/* <p>Loading...</p> */}
+        </div>
+      ) : projects.length > 0 ? (
+        <div className="project-table-data">
+          <table className='project-table'>
+            <thead>
+              <tr>
+                <th className='title'>Title</th>
+                <th className='mentor'>Student Name</th>
+                <th className='mentor'>Student Email</th>
+                <th className='details'>Preference</th>
+                <th className='details'>Status</th>
+                <th className='description'>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {projects.map((curProject, index) => (
                 <tr key={index}>
                   <td>{curProject.title}</td>
                   <td>{curProject.studentName}</td>
@@ -66,32 +71,117 @@ const StudentRequest = () => {
                   <td>{curProject.preference}</td>
                   <td>{curProject.appliedStatus}</td>
                   <td>
-                    <button className="btn-action btn-accept">
-                      Accept 
-                    </button>
-                    <button className="btn-action btn-reject">
-                      Reject
-                    </button>
+                    <div className="action-btn">
+                      <button className="btn-action btn-accept">Accept</button>
+                      <button className="btn-action btn-reject">Reject</button>
+                    </div>
                   </td>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
-        <tr>
-          <td colSpan="7">There is no any Request</td>
-        </tr>
+        <div className="no-requests">
+          <p>There are no requests</p>
+        </div>
       )}
-
-
-
-
-
-
     </div>
-  )
-}
+  );
+};
 
-export default StudentRequest
+export default StudentRequest;
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import './StudentRequest.css';
+// import {useAuth}  from '../../../store/auth';
+
+
+// const StudentRequest = () => {
+
+  
+//   const [projects, setProjects] = useState([]);
+//   const { authorizationToken } = useAuth();
+
+//   const getAllAppliedProjects = async () => {
+//     try {
+//       const response = await fetch("http://localhost:5000/api/view-applied-project", {
+//         method: "GET",
+//         headers: {
+//           Authorization: authorizationToken,
+//           "Content-type": "application/json"
+//         },
+//       });
+//       const data = await response.json();
+//       console.log('User data fetched:', data);
+
+//       console.log("Student id in request",data.projectList.studentID);
+
+//       const request = data.projectList.filter(project => project.appliedStatus === "Applied");
+
+//       console.log("applied project", request);
+
+//       setProjects(request || [] );
+//     } catch (error) {
+//       console.error("Error fetching project", error);
+//     }
+//   }
+
+//   useEffect(() => {
+//     getAllAppliedProjects();
+//   }, []);
+
+//   return (
+//     <div>
+//       <div className="heading">
+//         <h1>Students Request</h1>
+//       </div>
+
+//       {projects.length > 0 ? (
+//       <div className="project-table-data">
+//         <table className='project-table'>
+//           <thead>
+//             <tr>
+//               <th className='title'>Title</th>
+//               <th className='mentor'>Student Name</th>
+//               <th className='mentor'>Student Email</th>
+//               <th className='details'>Preference</th>
+//               <th className='details'>Status</th>
+//               <th className='description'>Action</th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {projects.map((curProject, index) => {
+//               return (
+//                 <tr key={index}>
+//                   <td>{curProject.title}</td>
+//                   <td>{curProject.studentName}</td>
+//                   <td>{curProject.studentEmail}</td>
+//                   <td>{curProject.preference}</td>
+//                   <td>{curProject.appliedStatus}</td>
+//                   <td>
+//                     <button className="btn-action btn-accept">
+//                       Accept 
+//                     </button>
+//                     <button className="btn-action btn-reject">
+//                       Reject
+//                     </button>
+//                   </td>
+//                 </tr>
+//               );
+//             })}
+//           </tbody>
+//         </table>
+//       </div>
+//       ) : (
+//         <tr>
+//           <td colSpan="7">There is no any Request</td>
+//         </tr>
+//       )}
+//     </div>
+//   )
+// }
+
+// export default StudentRequest
