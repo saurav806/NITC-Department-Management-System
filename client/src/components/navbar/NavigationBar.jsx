@@ -139,9 +139,9 @@ function NavigationBar() {
 
             {isLoggedIn && admin && (
               <>
-                <li className="lists">
+                {/* <li className="lists">
                   <NavLink to="/admin-dashboard">Dashboard</NavLink>
-                </li>
+                </li> */}
               </>
             )}
 
