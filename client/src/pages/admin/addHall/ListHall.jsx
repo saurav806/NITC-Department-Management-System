@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../../../store/auth';
 import { toast } from 'react-toastify'; 
 
-const URL = "http://localhost:5000/api/list-hall";
+const URL = "http://localhost:5000/api/admin/halls";
 
 function ListHall() {
   const [hall, setHall] = useState({
