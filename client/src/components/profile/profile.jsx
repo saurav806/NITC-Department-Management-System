@@ -20,9 +20,9 @@ const Profile = () => {
                     {user.facID && <p><strong>ID:</strong> {user.facID}</p>}
                     {user.course && <p><strong>Course:</strong> {user.course}</p>}
                     {user.batch && <p><strong>Admission Year:</strong> {user.batch}</p>}
-                    <p><strong>Department:</strong> {user.department}</p>
-                    <p><strong>Email ID:</strong> {user.email}</p>
-                    <p><strong>Phone:</strong> {user.phone}</p>
+                    {user.department && <p><strong>Department:</strong> {user.department}</p>}
+                    {user.email && <p><strong>Email ID:</strong> {user.email}</p>}
+                    {user.phone && <p><strong>Phone:</strong> {user.phone}</p>}
                     {user.office && <p><strong>Office:</strong> {user.office}</p>}
                 </div>
 

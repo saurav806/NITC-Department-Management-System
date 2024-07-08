@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 // const { number } = require("zod");
 
 const hallSchema = new mongoose.Schema({
-    hallID:{
-        type:String,
-        required:true,
-    },
     name:{
         type:String,
         require:true,
@@ -30,9 +26,9 @@ const hallSchema = new mongoose.Schema({
         type:Number,
         require:true,
     },
-    systemCount:{
-        type:Number,
-        default: 0,
+    facility:{
+        type:String,
+        default:"",
     }
 });
 

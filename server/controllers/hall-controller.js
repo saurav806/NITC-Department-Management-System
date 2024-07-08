@@ -3,16 +3,16 @@ const Hall = require("../models/halls/hall-model");
 // Creating a new project
 const halls = async (req, res) => {
   try {
-    const { hallID, name, location, staffInchargeName, staffInchargeEmail, capacity } = req.body;
+    const {name, location, staffInchargeName, staffInchargeEmail, capacity, facility } = req.body;
     const mentor = req.user;
 
     const hallCreated = await Hall.create({
-        hallID, 
         name, 
         location, 
         staffInchargeName, 
         staffInchargeEmail, 
         capacity,
+        facility
         // mentor: mentor._id,
     });
 

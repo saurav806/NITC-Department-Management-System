@@ -8,7 +8,7 @@ const Dashboard = () => {
   const {user} = useAuth();
 
   const options = [
-    { name: 'List A Project', component: ListHall },
+    { name: 'Add Hall', component: ListHall },
     { name: 'Profile', component:  Profile}
   ];
 
