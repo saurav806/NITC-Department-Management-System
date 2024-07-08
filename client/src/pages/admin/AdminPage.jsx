@@ -3,12 +3,14 @@ import ListHall from './addHall/ListHall';
 import Profile from '../../components/profile/profile';
 import Sidebar from '../../components/sidebar/sidebar';
 import { useAuth } from '../../store/auth';
+import ListedHall from '../../components/listedHall/listedHall';
 const Dashboard = () => {
 
   const {user} = useAuth();
 
   const options = [
-    { name: 'Add Hall', component: ListHall },
+    { name: 'Add New Hall', component: ListHall },
+    { name: 'Listed Hall', component: ListedHall },
     { name: 'Profile', component:  Profile}
   ];
 

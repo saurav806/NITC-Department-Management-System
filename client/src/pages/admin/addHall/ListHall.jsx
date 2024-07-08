@@ -38,6 +38,7 @@ function ListHall() {
           lastname: faculty.lastname,
           id: faculty._id,
         }));
+        
         console.log("Mapped faculties:", mappedFaculties); // Log mapped data
         setFaculties(mappedFaculties);
       } catch (error) {
