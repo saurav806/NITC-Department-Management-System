@@ -73,7 +73,7 @@ const ListedHall = () => {
                       <th className="location">Location</th>
                       <th className="staffInCharge">Staff Incharge</th>
                       <th className="staffInChargeEmail">Staff Incharge Email</th>
-                      <th className="facultyInCharge">Faculty Incharge</th>
+                      {/* <th className="facultyInCharge">Faculty Incharge</th> */}
                       <th className="capacity">Capacity</th>
                       <th className="facility">Facility</th>
                       <th className="facility">Action</th>
@@ -86,7 +86,7 @@ const ListedHall = () => {
                         <td>{hall.location}</td>
                         <td>{hall.staffInchargeName}</td>
                         <td>{hall.staffInchargeEmail}</td>
-                        <td>Jay Prakash</td>
+                        {/* <td>Jay Prakash</td> */}
                         <td>{hall.capacity}</td>
                         <td>{hall.facility}</td>
                         <td>
