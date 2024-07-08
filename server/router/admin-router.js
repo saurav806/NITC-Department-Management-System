@@ -3,14 +3,15 @@ const authMiddleware = require("../middlewares/auth-middleware");
 
 const getAllUser = require("../controllers/admin-controller");
 const adminMiddleware = require("../middlewares/admin-middleware");
-const halls = require("../controllers/hall-controller");
+const hallController = require("../controllers/hall-controller");
 const router = express.Router();
 
 router.route("/users").get(authMiddleware,adminMiddleware, getAllUser);
 
 
 //Hall routes here
-router.route("/halls").post(authMiddleware,adminMiddleware,halls);
+router.route("/halls").post(authMiddleware,adminMiddleware, hallController.halls);
+router.route("/hall-list").get(authMiddleware, hallController.getAllHalls);
 
 
 module.exports = router;
