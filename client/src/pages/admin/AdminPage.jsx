@@ -6,6 +6,7 @@ import { useAuth } from '../../store/auth';
 import ListedHall from '../../components/listedHall/listedHall';
 import BookingRequest from './booking/bookingRequest/bookingRequest';
 import BookingHistory from './booking/bookingHistroy/bookingHistory';
+import BookingForm from './booking/bookingForm/bookingForm';
 const Dashboard = () => {
 
   const {user} = useAuth();
@@ -15,7 +16,7 @@ const Dashboard = () => {
     { name: 'All Halls', component: ListedHall },
     { name: 'All Booking Request', component: BookingRequest },
     { name: 'All Booking History', component: BookingHistory },
-    // { name: 'My Booking Request', component: BookingHistory },
+    { name: 'Booking form', component: BookingForm },
     // { name: 'My Booking History', component: BookingHistory },
 
     { name: 'Profile', component:  Profile}

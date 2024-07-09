@@ -13,4 +13,13 @@ router.route("/users").get(authMiddleware, adminMiddleware, getAllUser);
 router.route("/halls").post(authMiddleware, adminMiddleware, hallController.halls);
 router.route("/hall-list/:hallId?").get(authMiddleware, hallController.getAllHalls);
 
+<<<<<<< HEAD
 module.exports = router;
+=======
+router.route("/booked-hall-list").get(hallController.getallBook);
+
+
+
+
+module.exports = router;
+>>>>>>> 984f95e27567f6b583e3079edff6d130baa202bf

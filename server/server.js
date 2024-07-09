@@ -9,6 +9,7 @@ const projectRoute = require("./router/project-router");
 const adminRoute = require("./router/admin-router");
 const departmentRoute = require("./router/department-router");
 const programRoute = require("./router/program-router");
+const bookingRoute = require("./router/booking-router");
 
 const connectDB = require("./utils/db");
 
@@ -40,6 +41,9 @@ app.use("/api", departmentRoute);
 // Defining programs/degree routes here
 app.use("/api", programRoute);
 
+
+//hallbooking routes here
+app.use("/",bookingRoute);
 
 
 // Defining Admin route
