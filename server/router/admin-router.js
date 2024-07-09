@@ -13,5 +13,9 @@ router.route("/users").get(authMiddleware,adminMiddleware, getAllUser);
 router.route("/halls").post(authMiddleware,adminMiddleware, hallController.halls);
 router.route("/hall-list").get(authMiddleware, hallController.getAllHalls);
 
+router.route("/booked-hall-list").get(hallController.getallBook);
+
+
+
 
 module.exports = router;

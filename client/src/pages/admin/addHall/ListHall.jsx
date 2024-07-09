@@ -48,7 +48,7 @@ function ListHall() {
     };
 
     fetchFaculties();
-  }, [authorizationToken]);
+  }, []);
 
   useEffect(() => {
     console.log('Faculties updated:', faculties); // Log faculties state after update

@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../store/auth";
 
 
-const facultyListURL = "http://localhost:5000/api/auth/faculties";//n
+// const facultyListURL = "http://localhost:5000/api/auth/faculties";
 
 const ListedHall = () => {
   const [halls, setHalls] = useState([]);
@@ -89,7 +89,7 @@ const ListedHall = () => {
                         <td>{hall.location}</td>
                         <td>{hall.staffInchargeName}</td>
                         <td>{hall.staffInchargeEmail}</td>
-                        <td>{hall.facultyInchargeID}</td>
+                        <td>{hall.facultyInchargeFirstName} {hall.facultyInchargeLastName}</td>
                         {/* <td>Jay Prakash</td> */}
                         <td>{hall.capacity}</td>
                         <td>{hall.facility}</td>
@@ -98,7 +98,7 @@ const ListedHall = () => {
                             className="btn-accept btn-action"
                             onClick={handleApplyClick}
                           >
-                            Request Booking
+                            Check
                           </button>
                         </td>
                       </tr>

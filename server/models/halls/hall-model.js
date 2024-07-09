@@ -11,8 +11,8 @@ const hallSchema = new mongoose.Schema({
         require:true,
     },
     facultyInchargeID:{//foreign key to faculty table 
-        type:String,
-        require:true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Faculty"
     },
     staffInchargeName:{
         type:String,
