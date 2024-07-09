@@ -1,45 +1,47 @@
 const Hall = require("../models/halls/hall-model");
 
-// getting all halls
-const getAllHalls = async (req, res, next) =>{
+// getting all halls or a specific hall by ID
+const getAllHalls = async (req, res, next) => {
+  const hallId = req.params.hallId;
   try {
-    const halls = await Hall.find();
+    let halls;
+    if (hallId) {
+      halls = await Hall.findById(hallId);
+      if (!halls) {
+        return res.status(404).json({ message: "Hall not found" });
+      }
+      halls = [halls]; // Wrap in an array to keep the response format consistent
+    } else {
+      halls = await Hall.find();
+    }
 
     const hallList = halls.map(hall => {
       const hallObject = hall.toObject();
-      if (hallObject._id) {// Store mentor's firstname in a separate variable
-        hallObject.id = hallObject._id; // Keep mentor as ID for checking faculty property
-      }
+      hallObject.id = hallObject._id; // Add id field
+      delete hallObject._id; // Optionally, remove _id field
       return hallObject;
     });
 
-    console.log(halls);
-    if(!hallList || hallList.length === 0){
-        return res.status(404).json({message: "No Hall Found"});
-    }
-    return res.status(200).json({halls: hallList, message:"halls found"});
+    return res.status(200).json({ halls: hallList, message: "Halls found" });
   } catch (error) {
-      next(error);
+    next(error);
   }
-}
+};
 
 // Creating a new hall
 const halls = async (req, res, next) => {
   try {
-    const {name, location, facultyInchargeID, staffInchargeName, staffInchargeEmail, capacity, facility } = req.body;
-    const mentor = req.user;
+    const { name, location, facultyInchargeID, staffInchargeName, staffInchargeEmail, capacity, facility } = req.body;
 
     const hallCreated = await Hall.create({
-        name, 
-        location,
-        facultyInchargeID,
-        staffInchargeName, 
-        staffInchargeEmail, 
-        capacity,
-        facility
+      name,
+      location,
+      facultyInchargeID,
+      staffInchargeName,
+      staffInchargeEmail,
+      capacity,
+      facility
     });
-
-    console.log("created hall",hallCreated);
 
     return res.status(200).json({
       message: "Hall Listed Successfully",
@@ -51,4 +53,4 @@ const halls = async (req, res, next) => {
   }
 };
 
-module.exports = {halls, getAllHalls};
+module.exports = { halls, getAllHalls };

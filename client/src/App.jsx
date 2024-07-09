@@ -28,6 +28,7 @@ import { useAuth } from "./store/auth";
 import FacultyRegister from "./pages/facultyRegister/facultyregister";
 import StudentDashboard from "./pages/student/dashboard/studentDashboard";
 import Profile from "./components/profile/profile";
+import DetailedHall from "./components/detailedHall/detailedHall";
 
 
 function App() {
@@ -53,6 +54,11 @@ function App() {
               <Route path="/student-dashboard" element={<StudentDashboard />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/logout" element={<Logout />} />
+              
+              
+              <Route path="/detailedHall/:hallId" element={<DetailedHall />} />
+
+
 
               {/* Admin routes */}
               <Route path="/admin" element={<AdminPage />} />
